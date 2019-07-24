@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery.js"></script>
+</head>
+
+<body>
+    <style>
+        .img_layout {
+            border-style: solid;
+            border-color: rgb(238, 220, 220);
+            margin: auto;
+            width: auto;
+            height: auto;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background-color: white;
+            border-width: 1px;
+
+
+        }
+
+        .img_padrao {
+            width: 20%;
+            height: 20%;
+            padding-bottom: 5px;
+
+
+        }
+
+        .link {
+
+            padding: auto;
+            margin-left: 25px;
+
+        }
+
+        .col-sm-2 {
+            margin-bottom: 15px;
+
+        }
+    </style>
+<input type="file" multiple id="addFotoGaleria">
+<div class="img_layout">
+    
+</div>
+
+
+
+    
+
+<script>
+
+$(function() {
+// Pré-visualização de várias imagens no navegador
+var visualizacaoImagens = function(input, lugarParaInserirVisualizacaoDeImagem) {
+
+    if (input.files) {
+        var quantImagens = input.files.length;
+
+        for (i = 0; i < quantImagens; i++) {
+            var reader = new FileReader();
+
+            reader.onload = function(event) {
+                $($.parseHTML('<img class="img_padrao">')).attr('src', event.target.result).appendTo(lugarParaInserirVisualizacaoDeImagem);
+            }
+
+            reader.readAsDataURL(input.files[i]);
+        }
+    }
+
+};
+
+$('#addFotoGaleria').on('change', function() {
+    visualizacaoImagens(this, 'div.img_layout');
+});
+});
+</script>
+
+
+
+
+
+
+</body>
+
+</html>
